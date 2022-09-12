@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import Home from "./Components/Home/Home"
+import LoginForm from "./Components/LoginPage/LoginForm";
+import { useContext } from "react";
+import { AppContextProvider } from "./AppContext/AppContext";
+import { AppContext } from "./AppContext/AppContext";
 
 function App() {
+  const { theme } = useContext(AppContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContextProvider>
+      <div id={!theme ? "dark" : "light"}>
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
+          <Route path="home" element={<Home />} />
+        </Routes>
+      </div>
+    </AppContextProvider>
   );
 }
 
