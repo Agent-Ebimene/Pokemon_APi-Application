@@ -1,5 +1,4 @@
 html {
-  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 :root {
@@ -7,9 +6,7 @@ html {
   --whiteColor: #ffffff;
   --contentBg: #a4c5b3;
 }
-body {
-  width: 100%;
-}
+
 * {
   padding: 0;
   margin: 0;
@@ -87,7 +84,7 @@ label {
   border-radius: none;
   background: #e8f0fe;
 }
-.btn {
+.login-btn {
   border: none;
   width: 200px;
   height: 40px;
@@ -96,6 +93,16 @@ label {
   color: var(--whiteColor);
   font-size: 1.5rem;
   margin-left: 20px;
+}
+.modal-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.search-btn {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 }
 .add-cusor {
   cursor: pointer;
@@ -118,4 +125,28 @@ label {
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
+}
+
+.single-pokemon {
+  margin-block: 2rem;
+  min-height: 150px;
+  cursor: pointer;
+  border: 1px solid var(--contentBg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pokemon-container {
+  display: grid;
+  padding-inline: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  justify-content: center;
+}
+
+@media screen and (min-width: 900px) {
+  .pokemon-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

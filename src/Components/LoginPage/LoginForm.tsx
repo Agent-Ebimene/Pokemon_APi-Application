@@ -1,10 +1,9 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { useContext } from "react";
 import PokemonImage from "../../Assets/images/pokemon-bg.jpg";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../AppContext/AppContext";
+import { AppContext } from "../AppContext/AppContext";
 import ReactSwitch from "react-switch";
 
 // interface Props {
@@ -55,13 +54,13 @@ const LoginForm: React.FC = () => {
             placeholder="******"
           />
         </div>
-        <Button
-          className={`btn ${password.length >= 6 ? "add-cusor" : ""}`}
+        <button
+          className={`login-btn ${password.length >= 6 ? "add-cusor" : ""}`}
           type="submit"
           disabled={password.length < 6}
         >
           Login
-        </Button>
+        </button>
         <div className="switch">
           <label>{theme ? "Light Mode" : "Dark Mode"}</label>
           <ReactSwitch

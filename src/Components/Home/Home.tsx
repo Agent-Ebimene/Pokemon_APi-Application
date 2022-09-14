@@ -1,52 +1,80 @@
 import React from "react";
 import { useContext } from "react";
-import { AppContext } from "../../AppContext/AppContext";
+import { AppContext } from "../AppContext/AppContext";
 import { useEffect, useState } from "react";
+import SearchButton from "../SearchButton/SearchButton";
+import SearchModal from "../PokemonCard/Modal/SearchModal";
+import PokemonCard from "../PokemonCard/PokemonCard";
+import PokemonInfo from "../PokemonInfo/PokemonInfo";
 
-// interface Props {
-//   isLoggedIn: boolean;
-// }
+interface PokemonList {
+  prev: string;
+  results: {
+    name: string;
+    url: string;
+  };
+}
+export interface Pokemon {
+  id: number;
+  url: string;
+  name: string;
+  sprites: {
+    back_default: string;
+  };
+  setDetailsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 const Home: React.FC = () => {
-  const [pokemonList, setPokemonList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
-  const [nextUrl, setNextUrl] = useState();
-  const [prevUrl, setPrevUrl] = useState();
-  const [disable, setDisable] = React.useState(true);
+  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const { authenticated } = useContext(AppContext);
+  const URL = "https://pokeapi.co/api/v2/pokemon?limit=151";
+  const { authenticated, theme, setTheme } = useContext(AppContext);
 
-  // const fetchPokemon = async () => {
-  //   const url: string = "https://pokeapi.co/api/v2/pokemon?limit=151%27";
-  //   const response = await fetch(url);
-  //   const res = await response.json();
-  //   console.log(res);
-  //   setLoading(false);
-  //   setPokemonList(res.data.results);
-  // };
+  //function to get pokemons
 
-  // useEffect(() => {
-  //   fetchPokemon();
-  // }, []);
+  const getPokemonList = async () => {
+    try {
+      const listResponse = await fetch(URL);
+      const res = await listResponse.json();
+      console.log(res);
+      res.results.forEach(async (pokemon: Pokemon) => {
+        const data = await fetch(pokemon.url);
+        const res = await data.json();
+        console.log(res);
+        setPokemonList((item) => {
+          item = [...item, res];
+          return item.sort((a, b) => (a.id > b.id ? 1 : -1));
+        });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getPokemonList();
+  }, []);
+
   return (
     <div>
-      {authenticated ? (
-        <h2>Fetching Data from API</h2>
+      {loading ? (
+        <div>Loading Pokemon</div>
       ) : (
         <div>
-          <nav className="navbar navbar-dark bg-dark">
-            <h2>Pokemon</h2>
-          </nav>
-          <div className="container">
-            <div className="btn-div">
-              <button type="button" disabled={disable} className="btn btn-func">
-                Previous
-              </button>
-              &nbsp;&nbsp;
-              <button type="button" className="btn btn-func">
-                Next
-              </button>
-            </div>
+          <SearchButton />
+          <SearchModal />
+          <div className="pokemon-container">
+            {pokemonList.map((pokemon, index) => (
+              <PokemonCard
+                key={index}
+                name={pokemon.name}
+                url={pokemon.url}
+                id={pokemon.id}
+                sprites={pokemon.sprites}
+                setDetailsOpen={pokemon.setDetailsOpen}
+              />
+            ))}
           </div>
         </div>
       )}
