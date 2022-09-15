@@ -6,10 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext/AppContext";
 import ReactSwitch from "react-switch";
 
-// interface Props {
-//   isLoggedIn: boolean;
-//   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-// }
 const LoginForm: React.FC = () => {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");

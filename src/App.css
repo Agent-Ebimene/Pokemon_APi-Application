@@ -5,6 +5,8 @@ html {
   --logginBg: #6d716e;
   --whiteColor: #ffffff;
   --contentBg: #a4c5b3;
+  --lighGrey: #6c6e6d;
+  --black: #222;
 }
 
 * {
@@ -71,11 +73,11 @@ label {
   width: 100%;
   height: 40px;
   padding: 1rem;
-  color: #6c6e6d;
+  color: var(--lighGrey);
   outline: none;
   font-size: 1rem;
   border: none;
-  border-bottom: 1px solid #6c6e6d;
+  border-bottom: 1px solid --lighGrey;
   border-radius: 10px;
 }
 
@@ -100,7 +102,7 @@ label {
   align-items: center;
 }
 .search-btn {
-  margin-top: 2rem;
+  margin-block: 2rem;
   display: flex;
   justify-content: center;
 }
@@ -118,7 +120,15 @@ label {
     border-radius: 0;
   }
 }
-
+.loading-text {
+  display: flex;
+  font-size: 2rem;
+}
+.home-page-header {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+}
 .switch {
   margin-top: 2rem;
   display: flex;
@@ -127,15 +137,28 @@ label {
   align-items: center;
 }
 
+.modal-open {
+  overflow-y: scroll;
+}
+
+.pokemon-pagination {
+  margin-block: 1rem;
+  justify-content: center;
+  display: flex;
+  gap: 2rem;
+}
 .single-pokemon {
-  margin-block: 2rem;
+  margin-block: 0.5rem;
   min-height: 150px;
-  cursor: pointer;
   border: 1px solid var(--contentBg);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.card-link {
+  text-decoration: none;
+  color: var(--lighGrey);
 }
 .pokemon-container {
   display: grid;

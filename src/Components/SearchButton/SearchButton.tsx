@@ -1,6 +1,4 @@
 import React from "react";
-import { useContext } from "react";
-import { AppContext } from "../../AppContext/AppContext";
 const SearchButton = () => {
   return (
     <div className="search-btn">

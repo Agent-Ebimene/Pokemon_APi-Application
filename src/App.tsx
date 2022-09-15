@@ -17,9 +17,11 @@ function App() {
       <div id={theme ? "dark" : "light"}>
         <Routes>
           <Route path="/" element={<LoginForm />} />
-          <Route path="home" element={<Home />} />
+          <Route path="home" element={<Home />}>
+            <Route path="home/:id" element={<PokemonInfo />}></Route>
+          </Route>
           <Route path="redirect" element={<Redirect />} />
-          <Route path="details " element={<PokemonInfo />}></Route>
+
           <Route
             path="home"
             element={!authenticated && <Navigate to="/" />}

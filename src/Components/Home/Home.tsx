@@ -5,27 +5,16 @@ import { useEffect, useState } from "react";
 import SearchButton from "../SearchButton/SearchButton";
 import SearchModal from "../PokemonCard/Modal/SearchModal";
 import PokemonCard from "../PokemonCard/PokemonCard";
-import PokemonInfo from "../PokemonInfo/PokemonInfo";
+import ReactSwitch from "react-switch";
+import { PokemonList, Pokemon } from "../../Utils/services";
+import { PaginationProps } from "../../Utils/services";
+import Pagination from "../Pagination/Pagination";
 
-interface PokemonList {
-  prev: string;
-  results: {
-    name: string;
-    url: string;
-  };
-}
-export interface Pokemon {
-  id: number;
-  url: string;
-  name: string;
-  sprites: {
-    back_default: string;
-  };
-  setDetailsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
 const Home: React.FC = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [currentPage, setCurentPage] = useState<number>(1);
+  const [pokemonsPerPage, setPokemonsPerPage] = useState<number>(20);
 
   const URL = "https://pokeapi.co/api/v2/pokemon?limit=151";
   const { authenticated, theme, setTheme } = useContext(AppContext);
@@ -51,21 +40,38 @@ const Home: React.FC = () => {
     }
     setLoading(false);
   };
-
+  // Pagination Function
+  const paginate = (number: number) => {
+    setCurentPage(number);
+  };
   useEffect(() => {
     getPokemonList();
   }, []);
-
+  // Get the page we are in
+  const lastPageIndex = currentPage * pokemonsPerPage;
+  const firstPageIndex = lastPageIndex - pokemonsPerPage;
+  const currentPokemons = pokemonList.slice(firstPageIndex, lastPageIndex);
   return (
     <div>
       {loading ? (
-        <div>Loading Pokemon</div>
+        <div className="loading-text">Loading Pokemon</div>
       ) : (
         <div>
-          <SearchButton />
+          <div className="home-page-header">
+            <div className="switch ">
+              <label>{theme ? "Light Mode" : "Dark Mode"}</label>
+              <ReactSwitch
+                checked={theme}
+                onChange={() => {
+                  setTheme(!theme);
+                }}
+              />
+            </div>
+            <SearchButton />
+          </div>
           <SearchModal />
           <div className="pokemon-container">
-            {pokemonList.map((pokemon, index) => (
+            {currentPokemons.map((pokemon, index) => (
               <PokemonCard
                 key={index}
                 name={pokemon.name}
@@ -76,6 +82,11 @@ const Home: React.FC = () => {
               />
             ))}
           </div>
+          <Pagination
+            pokemonsPerPage={pokemonsPerPage}
+            totalPokemons={pokemonList.length}
+            paginate={paginate}
+          />
         </div>
       )}
     </div>

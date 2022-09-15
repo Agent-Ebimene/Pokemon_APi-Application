@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Pokemon } from "../Home/Home";
+import { Pokemon } from "../../Utils/services";
 import PokemonInfo from "../PokemonInfo/PokemonInfo";
+import { Link } from "react-router-dom";
 
 const PokemonCard: React.FC<Pokemon> = ({
   name,
@@ -16,9 +17,13 @@ const PokemonCard: React.FC<Pokemon> = ({
     setDetailsOpen(!setDetailsOpen);
   };
   return (
-    <div className="single-pokemon" onClick={handlePokemonInfo}>
-      <h3> {name}</h3>
-      <img src={sprites.back_default} alt={name}></img>
+    <div className="single-pokemon">
+      <Link to={`home/${name}`} className="card-link">
+        <h3> {name}</h3>
+      </Link>
+      <Link to={`home/${id}`} className="card-link">
+        <img src={sprites.back_default} alt={name}></img>
+      </Link>
     </div>
   );
 };

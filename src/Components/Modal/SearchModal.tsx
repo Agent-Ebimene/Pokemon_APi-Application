@@ -4,7 +4,7 @@ const SearchModal = () => {
   return (
     <>
       <div
-        className="modal fade"
+        className="modal fade modal-open"
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"

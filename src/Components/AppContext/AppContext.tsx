@@ -1,15 +1,6 @@
 import React, { createContext, useState } from "react";
-interface AppContextProps {
-  authenticated: boolean;
-  setAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
-  theme: boolean;
-  modalOpen: boolean;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setTheme: React.Dispatch<React.SetStateAction<boolean>>;
-}
-interface ProviderProps {
-  children: React.ReactNode;
-}
+import { AppContextProps } from "../../Utils/services";
+import { ProviderProps } from "../../Utils/services";
 export const AppContext = createContext({} as AppContextProps);
 
 export const AppContextProvider: React.FC<ProviderProps> = ({ children }) => {
