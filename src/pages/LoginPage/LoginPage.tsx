@@ -1,10 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import PokemonImage from "../../Assets/images/pokemon-bg.jpg";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../AppContext/AppContext";
-import ReactSwitch from "react-switch";
+import { AppContext } from '../../AppContext/AppContext';
+import ToggleButton from "../../components/ToggleButton/ToggleButton";
 
 const LoginForm: React.FC = () => {
   const [userName, setUserName] = useState<string>("");
@@ -13,7 +13,7 @@ const LoginForm: React.FC = () => {
   const [passwordError, setPasswordError] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const { setAuthenticated, setTheme, theme } = useContext(AppContext);
+  const { setAuthenticated, theme } = useContext(AppContext);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,19 +39,9 @@ const LoginForm: React.FC = () => {
       setAuthenticated(true);
     }
   };
-  useEffect(() => {
-    const data = window.localStorage.getItem("POKEMON_API");
-    if (data !== null) {
-      setTheme(JSON.parse(data));
-    }
-  }, []);
-  //Persist Theme Value in Local Storage
-  useEffect(() => {
-    window.localStorage.setItem("POKEMON_API", JSON.stringify(theme));
-    console.log(theme);
-  }, [theme]);
+
   return (
-    <div className="login-form-container">
+    <div className="login-form-container" id={theme}>
       <div className="content-container">
         <img src={PokemonImage} alt="" className="pokemon-img" />
         <h3>Explore the pokemon API</h3>
@@ -88,14 +78,7 @@ const LoginForm: React.FC = () => {
         <button className={`login-btn`} type="submit">
           Login
         </button>
-        <div className="switch">
-          <ReactSwitch
-            checked={theme}
-            onChange={() => {
-              setTheme(!theme);
-            }}
-          />
-        </div>
+        <ToggleButton />
       </form>
     </div>
   );

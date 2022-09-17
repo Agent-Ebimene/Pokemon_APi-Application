@@ -1,7 +1,7 @@
 export interface AppContextProps {
   authenticated: boolean;
   setAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
-  theme: string | null;
+  theme: string;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
   isPokemonClicked: boolean;
   setIsPokemonClicked: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,6 +19,16 @@ export interface PokemonList {
     name: string;
     url: string;
   };
+}
+
+export interface Pagination {
+  next: string;
+  prev: string;
+}
+
+export interface PokemonItem {
+  name: string;
+  url: string;
 }
 
 export interface Pokemon {
@@ -54,18 +64,12 @@ export interface SearchProps {
     React.SetStateAction<string | null | undefined>
   >;
 }
+
+interface Chain {
+  species: { name: string }
+  evolves_to: Chain[]
+}
 export interface PokemonEvolutions {
-  chain: {
-    species: {
-      name: string;
-    };
-    evolves_to: {
-      evolves_to: {
-        species: string;
-      }[];
-      species: {
-        name: string;
-      };
-    }[];
-  };
+  id: number,
+  chain: Chain
 }

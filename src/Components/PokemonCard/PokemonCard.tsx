@@ -1,12 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Pokemon } from "../../Utils/services";
-import { useContext } from "react";
-import { AppContext } from "../AppContext/AppContext";
-// import { Link, Outlet } from "react-router-dom";
-interface PokemonDetailsProp {
-  getDetails: (id: number) => Pokemon[];
-}
+import { Pokemon } from "../../utils/types";
 
 const PokemonCard: React.FC<Pokemon> = ({
   name,
@@ -15,11 +9,9 @@ const PokemonCard: React.FC<Pokemon> = ({
   id,
   sprites,
 }) => {
-  const { isPokemonClicked, setIsPokemonClicked } = useContext(AppContext);
-
   const navigate = useNavigate();
   const handlePokemonInfo = () => {
-    navigate(`/details`, { state: { name, id, sprites, abilities, types } });
+    navigate(`/pokemon/details/${name}`, { state: {pokemon:{ name, id, sprites, abilities, types }}});
   };
   return (
     <>

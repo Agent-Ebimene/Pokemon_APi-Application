@@ -26,6 +26,9 @@ label {
 #dark {
   background: black;
 }
+#bf {
+  background: r;
+}
 
 .login-form-container {
   min-height: 100vh;
@@ -43,9 +46,15 @@ label {
   align-items: center;
   display: none;
 }
+
+#dark .content-container P,
+#dark,
+content-container h3 {
+  color: var(--whiteColor);
+}
 .content-container p,
 .content-container h3 {
-  color: var(--whiteColor);
+  color: blavck;
   max-width: 15rem;
   text-align: center;
   margin-top: 1rem;
@@ -68,12 +77,17 @@ label {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
+#dark form-control input {
+  color: var(--whiteColor);
+}
+
+
 
 .form-control input {
   width: 100%;
   height: 40px;
   padding: 1rem;
-  color: var(--lighGrey);
+  color: black;
   outline: none;
   font-size: 1rem;
   border: none;
@@ -86,21 +100,25 @@ label {
   border-radius: none;
   background: #e8f0fe;
 }
+
 .login-btn {
   border: none;
   width: 200px;
   height: 40px;
   background: var(--logginBg);
   border-radius: 30px;
-  color: var(--whiteColor);
+  color: black;
   font-size: 1.5rem;
   margin-left: 20px;
 }
+
+
 .modal-form {
   display: flex;
   gap: 0.5rem;
   align-items: center;
 }
+
 .search-btn {
   margin-block: 2rem;
   display: flex;
@@ -135,6 +153,14 @@ label {
   justify-content: center;
   gap: 2.5rem;
 }
+.pagination-con{
+  display:flex;
+  justify-content: center;
+}
+.pagination-con input{
+  margin:10px 5px;
+  cursor: pointer;
+}
 .switch {
   margin-top: 2rem;
   display: flex;
@@ -160,11 +186,17 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background:transparent;
+  border:1px solid grey
 }
 .card-body h3 {
   text-align: center;
   font-size: 1.3rem;
   text-transform: capitalize;
+}
+
+#dark .card  li{
+  color: var(--whiteColor)
 }
 .card li {
   text-align: center;

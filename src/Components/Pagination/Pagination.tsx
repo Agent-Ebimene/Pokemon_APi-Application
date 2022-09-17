@@ -1,5 +1,5 @@
 import React from "react";
-import { PaginationProps } from "../../Utils/services";
+import { PaginationProps } from "../../utils/types";
 
 const Pagination: React.FC<PaginationProps> = ({
   pokemonsPerPage,
