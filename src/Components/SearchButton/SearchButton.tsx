@@ -4,7 +4,7 @@ const SearchButton = () => {
     <div className="search-btn">
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-primary pokemon-search-btn"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
       >

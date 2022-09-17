@@ -59,8 +59,17 @@ content-container h3 {
   text-align: center;
   margin-top: 1rem;
 }
+.hide-modal {
+  display: none;
+}
+.search-items {
+  cursor: pointer;
+}
 
 /*Login Form */
+#dark .login-form {
+  background: transparent;
+}
 .login-form {
   background: var(--whiteColor);
   min-width: 250px;
@@ -72,6 +81,9 @@ content-container h3 {
 .form-control {
   margin-block: 1.5rem;
 }
+#dark .form-control label {
+  color: var(--whiteColor);
+}
 .form-control label {
   display: block;
   font-size: 1.5rem;
@@ -80,8 +92,6 @@ content-container h3 {
 #dark form-control input {
   color: var(--whiteColor);
 }
-
-
 
 .form-control input {
   width: 100%;
@@ -101,6 +111,9 @@ content-container h3 {
   background: #e8f0fe;
 }
 
+#dark .login-btn {
+  color: var(--whiteColor);
+}
 .login-btn {
   border: none;
   width: 200px;
@@ -112,7 +125,6 @@ content-container h3 {
   margin-left: 20px;
 }
 
-
 .modal-form {
   display: flex;
   gap: 0.5rem;
@@ -123,6 +135,17 @@ content-container h3 {
   margin-block: 2rem;
   display: flex;
   justify-content: center;
+}
+.search-modal {
+  background: green;
+}
+.pokemon-search-btn {
+  color: black;
+  background: white;
+}
+#dark .pokemon-search-btn {
+  background: transparent;
+  color: var(--whiteColor);
 }
 .add-cusor {
   cursor: pointer;
@@ -153,12 +176,12 @@ content-container h3 {
   justify-content: center;
   gap: 2.5rem;
 }
-.pagination-con{
-  display:flex;
+.pagination-con {
+  display: flex;
   justify-content: center;
 }
-.pagination-con input{
-  margin:10px 5px;
+.pagination-con input {
+  margin: 10px 5px;
   cursor: pointer;
 }
 .switch {
@@ -168,7 +191,12 @@ content-container h3 {
   gap: 0.5rem;
   align-items: center;
 }
-
+.toggle-btn {
+  color: black;
+}
+#dark .toggle-btn {
+  color: var(--whiteColor);
+}
 /* Pokemon Info*/
 .pokemon-info {
   min-height: 100vh;
@@ -186,8 +214,8 @@ content-container h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background:transparent;
-  border:1px solid grey
+  background: transparent;
+  border: 1px solid grey;
 }
 .card-body h3 {
   text-align: center;
@@ -195,8 +223,8 @@ content-container h3 {
   text-transform: capitalize;
 }
 
-#dark .card  li{
-  color: var(--whiteColor)
+#dark .card li {
+  color: var(--whiteColor);
 }
 .card li {
   text-align: center;

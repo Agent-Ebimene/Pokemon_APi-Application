@@ -2,15 +2,16 @@ import React from "react";
 import { useContext } from "react";
 import { AppContext } from "../../AppContext/AppContext";
 import { useEffect, useState } from "react";
-import SearchButton from "../../Components/SearchButton/SearchButton";
-import PokemonCard from "../../Components/PokemonCard/PokemonCard";
-import SearchModal from "../../Components/PokemonCard/Modal/SearchModal";
+import SearchButton from "../../components/SearchButton/SearchButton";
+import PokemonCard from "../../components/PokemonCard/PokemonCard";
+import SearchModal from "../../components/Modal/SearchModal";
 
 import { Pagination, PokemonItem } from "../../utils/types";
 import { Pokemon } from "../../utils/types";
 import { Navigate } from "react-router-dom";
-import ToggleButton from "../../Components/ToggleButton/ToggleButton";
+
 import { getPokemonList, getPokemon } from "../../utils/ApiServices";
+import ToggleButton from "../../components/ToggleButton/ToggleButton";
 
 const Home: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);

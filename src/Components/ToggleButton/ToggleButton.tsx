@@ -11,7 +11,11 @@ function ToggleButton() {
   return (
     <div className="switch ">
       <label>{theme === "dark" ? "Light Mode" : "Dark Mode"}</label>
-      <ReactSwitch checked={theme === "dark"} onChange={handleSwitch} />
+      <ReactSwitch
+        checked={theme === "dark"}
+        onChange={handleSwitch}
+        className="toggle-btn"
+      />
     </div>
   );
 }

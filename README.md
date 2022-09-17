@@ -1,10 +1,37 @@
-# Getting Started with Create React App
+# Exploring The Pokemon Api.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this project,the Pokemon API's endpoints where fetched with modern Javascript asynchronous approach (the fetch API,alongside with async and await). The returning data was rendered across different compoenents.
+A debounced search mechanism that allows the user to search for a given pokemon was implemented.A list of data returns after 500ms for all pokemons whose names match with input value.
+Performance enhancing React lifecycle methods like useEffect were used to prevent unneccessary re-rendering of components.
+I explored the context API in React(for managing values that were used in different components like the authentication state of the app),Local Storage(for managing the theme)
 
-## Available Scripts
+## This project was built with React,Typescript and Bootstrap 5 to consume API endpoints from the Pokemon API.
+
+### Packages installed for this project
+
+React-router-dom, React Switch and React-icons.
+
+#### React-router-dom
+
+An Icon Library that is used in the development of most Applications and websites.
+This was imported to add the search icon in the search modal
+
+#### React Switch
+
+This is a package to add switch to our frontend applications to improve great user experience. This was used in the project to add the switching functionality to our Application.
+
+#### React-router-dom.
+
+The react-router-dom package contains bindings for using React Router in web applications. Please see the Getting Started guide for more information on how to get started with React Router.
+This was used for all the routings in the application.
+
+##### To start this project,You can clone this repository.
+
+--git clone
 
 In the project directory, you can run:
+App.tsx is the entry file of the app.
+The Pages Folder contains the routes of the app and the components folder contains a few UI components.
 
 ### `npm start`
 
