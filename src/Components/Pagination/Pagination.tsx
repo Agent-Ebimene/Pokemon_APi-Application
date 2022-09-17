@@ -7,8 +7,8 @@ const Pagination: React.FC<PaginationProps> = ({
   paginate,
 }) => {
   const pageNumbers: number[] = [];
-  for (let i = 1; i < Math.ceil(totalPokemons / pokemonsPerPage); i++) {
-    pageNumbers.push(i);
+  for (let i = 0; i < Math.ceil(totalPokemons / pokemonsPerPage); i++) {
+    pageNumbers.push(i + 1);
   }
 
   return (

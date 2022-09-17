@@ -1,6 +1,9 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs";
-const SearchModal = () => {
+import { SearchProps } from "../../Utils/services";
+import { Pokemon } from "../../Utils/services";
+
+const SearchModal = ({}: Pokemon) => {
   return (
     <>
       <div
@@ -28,7 +31,7 @@ const SearchModal = () => {
               <div className="input-group">
                 <div className="modal-form">
                   <input
-                    type="search"
+                    type="text"
                     id="form1"
                     placeholder="search pokemon"
                     className="form-control"

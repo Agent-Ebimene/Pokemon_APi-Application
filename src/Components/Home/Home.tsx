@@ -6,15 +6,17 @@ import SearchButton from "../SearchButton/SearchButton";
 import SearchModal from "../PokemonCard/Modal/SearchModal";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import ReactSwitch from "react-switch";
-import { PokemonList, Pokemon } from "../../Utils/services";
-import { PaginationProps } from "../../Utils/services";
+import { SearchProps } from "../../Utils/services";
+import { Pokemon } from "../../Utils/services";
 import Pagination from "../Pagination/Pagination";
+import { Outlet, Navigate } from "react-router-dom";
 
 const Home: React.FC = () => {
-  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [currentPage, setCurentPage] = useState<number>(1);
-  const [pokemonsPerPage, setPokemonsPerPage] = useState<number>(20);
+  const [pokemonsPerPage] = useState<number>(20);
+  const [searchValue, setSearchValue] = useState<string | null>();
 
   const URL = "https://pokeapi.co/api/v2/pokemon?limit=151";
   const { authenticated, theme, setTheme } = useContext(AppContext);
@@ -25,16 +27,16 @@ const Home: React.FC = () => {
     try {
       const listResponse = await fetch(URL);
       const res = await listResponse.json();
-      console.log(res);
       res.results.forEach(async (pokemon: Pokemon) => {
         const data = await fetch(pokemon.url);
         const res = await data.json();
         console.log(res);
-        setPokemonList((item) => {
+        setPokemons((item) => {
           item = [...item, res];
           return item.sort((a, b) => (a.id > b.id ? 1 : -1));
         });
       });
+      console.log(pokemons);
     } catch (err) {
       console.log(err);
     }
@@ -44,13 +46,18 @@ const Home: React.FC = () => {
   const paginate = (number: number) => {
     setCurentPage(number);
   };
+
   useEffect(() => {
     getPokemonList();
   }, []);
+
   // Get the page we are in
   const lastPageIndex = currentPage * pokemonsPerPage;
   const firstPageIndex = lastPageIndex - pokemonsPerPage;
-  const currentPokemons = pokemonList.slice(firstPageIndex, lastPageIndex);
+  const currentPokemons = pokemons.slice(firstPageIndex, lastPageIndex);
+  if (!authenticated) {
+    return <Navigate to="/" />;
+  }
   return (
     <div>
       {loading ? (
@@ -78,13 +85,14 @@ const Home: React.FC = () => {
                 url={pokemon.url}
                 id={pokemon.id}
                 sprites={pokemon.sprites}
-                setDetailsOpen={pokemon.setDetailsOpen}
+                abilities={pokemon.abilities}
+                types={pokemon.types}
               />
             ))}
           </div>
           <Pagination
             pokemonsPerPage={pokemonsPerPage}
-            totalPokemons={pokemonList.length}
+            totalPokemons={pokemons.length}
             paginate={paginate}
           />
         </div>

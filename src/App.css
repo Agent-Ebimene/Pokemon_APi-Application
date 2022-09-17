@@ -9,6 +9,9 @@ html {
   --black: #222;
 }
 
+li {
+  list-style-type: none;
+}
 * {
   padding: 0;
   margin: 0;
@@ -47,16 +50,13 @@ label {
   text-align: center;
   margin-top: 1rem;
 }
-.pokemon-img {
-  height: 200px;
-  width: 200px;
-  border-radius: 10px;
-}
+
+/*Login Form */
 .login-form {
   background: var(--whiteColor);
   min-width: 250px;
   max-width: 400px;
-  height: 400px;
+  min-height: 400px;
   padding: 1rem;
   border-radius: 15px;
 }
@@ -120,9 +120,15 @@ label {
     border-radius: 0;
   }
 }
+.error {
+  color: red;
+  visibility: none;
+}
 .loading-text {
   display: flex;
   font-size: 2rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 .home-page-header {
   display: flex;
@@ -137,10 +143,32 @@ label {
   align-items: center;
 }
 
-.modal-open {
-  overflow-y: scroll;
+/* Pokemon Info*/
+.pokemon-info {
+  min-height: 100vh;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
-
+.pokemon-img {
+  min-height: 219.5px;
+  width: 200px;
+  border-radius: 10px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-body h3 {
+  text-align: center;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+}
+.card li {
+  text-align: center;
+}
 .pokemon-pagination {
   margin-block: 1rem;
   justify-content: center;
@@ -155,6 +183,10 @@ label {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.single-pokemon h3,
+.single-pokemon img {
+  cursor: pointer;
 }
 .card-link {
   text-decoration: none;
