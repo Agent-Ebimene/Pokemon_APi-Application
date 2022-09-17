@@ -1,6 +1,6 @@
 # Exploring The Pokemon Api.
 
-In this project,the Pokemon API's endpoints where fetched with modern Javascript asynchronous approach (the fetch API,alongside with async and await). The returning data was rendered across different compoenents.
+In this project,the Pokemon API's endpoints were fetched with modern Javascript asynchronous approach (the fetch API,alongside with async and await). The returning data was rendered across different components.
 A debounced search mechanism that allows the user to search for a given pokemon was implemented.A list of data returns after 500ms for all pokemons whose names match with input value.
 Performance enhancing React lifecycle methods like useEffect were used to prevent unneccessary re-rendering of components.
 I explored the context API in React(for managing values that were used in different components like the authentication state of the app),Local Storage(for managing the theme)
@@ -11,7 +11,7 @@ I explored the context API in React(for managing values that were used in differ
 
 React-router-dom, React Switch and React-icons.
 
-#### React-router-dom
+#### React-Icons Library
 
 An Icon Library that is used in the development of most Applications and websites.
 This was imported to add the search icon in the search modal
@@ -27,9 +27,9 @@ This was used for all the routings in the application.
 
 ##### To start this project,You can clone this repository.
 
---git clone
+git using git clone in GitHub here
 
-In the project directory, you can run:
+In the project directory.
 App.tsx is the entry file of the app.
 The Pages Folder contains the routes of the app and the components folder contains a few UI components.
 
