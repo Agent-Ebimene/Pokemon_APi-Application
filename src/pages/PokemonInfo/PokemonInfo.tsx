@@ -9,44 +9,41 @@ import { getPokemon, getPokemonEvolution } from "../../utils/ApiServices";
 
 interface LocationState {
   path: string;
-  pokemon: Pokemon
+  pokemon: Pokemon;
 }
 
 const PokemonInfo = () => {
   const [evolutions, setEvolutions] = useState<PokemonEvolutions | null>(null);
   const firstSpecies = evolutions?.chain.species.name;
   const secondSpecies = evolutions?.chain.evolves_to[0]?.species.name;
-  const thirdSpecies = evolutions?.chain.evolves_to[0]?.evolves_to[0]?.species.name;
+  const thirdSpecies =
+    evolutions?.chain.evolves_to[0]?.evolves_to[0]?.species.name;
   const [searchPokemon, setSearchPokemon] = useState<Pokemon>();
 
   const { path, pokemon } = useLocation().state as LocationState;
 
   const name = pokemon?.name || searchPokemon?.name;
-  const sprites = pokemon?.sprites || searchPokemon?.sprites
-  const abilities = pokemon?.abilities || searchPokemon?.abilities
-  const types = pokemon?.types || searchPokemon?.types
-
-
-
+  const sprites = pokemon?.sprites || searchPokemon?.sprites;
+  const abilities = pokemon?.abilities || searchPokemon?.abilities;
+  const types = pokemon?.types || searchPokemon?.types;
 
   useEffect(() => {
     if (!pokemon) {
       (async () => {
         const pokemonData = await getPokemon(path);
         const evolutionsData = await getPokemonEvolution(pokemonData?.id);
-        console.log('evolution', evolutionsData)
-        console.log('pokemon----->', pokemonData)
-        setSearchPokemon(pokemonData)
-        setEvolutions(evolutionsData)
-      })()
+        console.log("evolution", evolutionsData);
+        console.log("pokemon----->", pokemonData);
+        setSearchPokemon(pokemonData);
+        setEvolutions(evolutionsData);
+      })();
     } else {
       (async () => {
         const evolutionsData = await getPokemonEvolution(pokemon?.id);
-        console.log('evolution', evolutionsData)
-        setEvolutions(evolutionsData)
+        console.log("evolution", evolutionsData);
+        setEvolutions(evolutionsData);
       })();
     }
-
   }, [pokemon?.id, path, pokemon]);
 
   const { authenticated, theme } = useContext(AppContext);
@@ -80,7 +77,11 @@ const PokemonInfo = () => {
             ))}
           </ul>
         </div>
-        <img src={sprites?.back_default} className="info-image" alt={name}></img>
+        <img
+          src={sprites?.back_default}
+          className="info-image"
+          alt={name}
+        ></img>
       </div>
     </div>
   );
