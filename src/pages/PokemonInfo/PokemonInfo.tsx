@@ -40,7 +40,6 @@ const PokemonInfo = () => {
     } else {
       (async () => {
         const evolutionsData = await getPokemonEvolution(pokemon?.id);
-        console.log("evolution", evolutionsData);
         setEvolutions(evolutionsData);
       })();
     }
